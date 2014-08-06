@@ -13,3 +13,17 @@ to terminate nodes:
 
 aws ec2 terminate-instances --instance-ids `./terminatenodes.sh`
 
+Example workflow:
+
+
+./createnodes.sh 10 chrisbarker | sed -n '1p' | cut -f 2
+
+Capture reservation-id
+
+./updatetags.sh reservation-id
+
+terminate nodes (so you don't blow things up, this is a command you still have to call explicitly)
+
+Terminate.sh searches for nodes that are running and have the tag ER\_Role=Agent
+
+aws ec2 terminate-instances --instance-ids `./terminatenodes.sh`
