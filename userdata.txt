@@ -1,0 +1,6 @@
+#!/bin/bash
+ 
+PE_MASTER='foobar'
+
+curl -sk https://${PE_MASTER}:8140/packages/current/install.bash | sudo /bin/bash
+
