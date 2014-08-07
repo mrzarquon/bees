@@ -27,3 +27,7 @@ terminate nodes (so you don't blow things up, this is a command you still have t
 Terminate.sh searches for nodes that are running and have the tag ER\_Role=Agent
 
 aws ec2 terminate-instances --instance-ids \`./terminatenodes.sh\`
+
+
+or ./updatetags.sh $(./createnodes.sh 50 eshamow\_eso | sed -n '1p' | cut -f 2)
+
