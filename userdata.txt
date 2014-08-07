@@ -1,9 +1,10 @@
 #!/bin/bash
- 
-PE_MASTER='ec2-54-191-146-46.us-west-2.compute.amazonaws.com'
+
+curl -sk -O https://ec2-54-200-208-249.us-west-2.compute.amazonaws.com:8140/packages/current/el-6-x86_64.bash
+
+sed -i 's!\(certname ..\)/opt/puppet/bin/facter fqdn!\1curl -s http://169.254.169.254/latest/meta-data/instance-id!' el-6-x86_64.bash
 
 mkdir -p /etc/puppetlabs/facter/facts.d/
+echo 'tier=tier_'`echo $(( $RANDOM % 9 ))` > /etc/puppetlabs/facter/facts.d/tier.txt
 
-echo "ec2_instance_id=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)" > /etc/puppetlabs/facter/facts.d/ec2.txt
-
-curl -sk https://${PE_MASTER}:8140/packages/current/install.bash | /bin/bash
+/bin/bash el-6-x86_64.bash
