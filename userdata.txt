@@ -1,10 +1,8 @@
 #!/bin/bash
-
-curl -sk -O https://ec2-54-200-208-249.us-west-2.compute.amazonaws.com:8140/packages/current/el-6-x86_64.bash
-
+ 
+curl -sk -O https://ec2-54-200-234-146.us-west-2.compute.amazonaws.com:8140/packages/current/el-6-x86_64.bash
 sed -i 's!\(certname ..\)/opt/puppet/bin/facter fqdn!\1curl -s http://169.254.169.254/latest/meta-data/instance-id!' el-6-x86_64.bash
-
 mkdir -p /etc/puppetlabs/facter/facts.d/
-echo 'tier=tier_'`echo $(( $RANDOM % 9 ))` > /etc/puppetlabs/facter/facts.d/tier.txt
-
+echo 'tier=tier_1' > /etc/puppetlabs/facter/facts.d/tier.txt
+ 
 /bin/bash el-6-x86_64.bash

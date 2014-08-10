@@ -31,3 +31,8 @@ aws ec2 terminate-instances --instance-ids \`./terminatenodes.sh\`
 
 or ./updatetags.sh $(./createnodes.sh 50 eshamow\_eso | sed -n '1p' | cut -f 2)
 
+These are bash scripts meant to do bashy things, like quick iterate:
+
+for i in {1..9}; do ./updatetags.sh $(./createnodes.sh 50 chrisbarker | sed -n '1p' | cut -f 2); sleep 20; done
+
+
